@@ -22,45 +22,48 @@ def save(name='', fmt='png'):
 
 from PIL import Image
 
-file1 = Image.open('/home/pavel/Загрузки/1.jpg')  # Путь картинки
-text_1 = "Cyberbunk 2019"  # Текст заголовка
+file1 = Image.open('sun.jpg')  # Путь картинки
+text_1 = "Sun"  # Текст заголовка
 
 ################Задание 2 - стандартный график Python с заливкой###############
 import re
 
-pathtotask2 = "/home/pavel/Загрузки/file_date.txt"  # Переменная, содержащая путь к файлу
-var = 13  # Номер выполняемого варианта
-file2 = open(pathtotask2, 'r')
+# pathtotask2 = "/home/pavel/Загрузки/file_date.txt"  # Переменная, содержащая путь к файлу
+var = 7  # Номер выполняемого варианта
+# file2 = open(pathtotask2, 'r')
 i = 0
-abc_2 = []  # Массив точек абсцисс 2 задания(нет но да)
-val_ar_2 = []  # Значения графика 2 задания
+x_2 = np.arange(1, 28, 1)   # Массив точек абсцисс 2 задания
+y_2 = [2.9,  -1.5,  -3.6,   0.7,   5.1,   8.5,
+       6.5,  4.7,   6.8,   6.2,   1.9,  -3.5,
+       -1.3,   2.4,   3.5,   4.4,   4.1,   5.6,
+       -1.8,   1.1,   0.2,   2.9,   1.8,   1.8,
+       3.8,   7.2,   7.9]  # Значения графика 2 задания
 head_text_2 = "Стандартный график"  # Заголовок графика 2 задания
-head_font_2 = "Tahoma"  # Шрифт, размер заголовка графика 2 задания
-head_size_2 = 14
+head_font_2 = "Times New Roman"  # Шрифт, размер заголовка графика 2 задания
+head_size_2 = 12
 head_weight_2 = 'bold'
-head_style_2 = 'normal'  # Жирность и стиль:'bold', 'normal'
+head_style_2 = 'oblique'  # Жирность и стиль:'bold', 'oblique'
 
 text_font_2 = "Tahoma"  # Шрифт, размер, поворот подписей делений осей координат
 text_size_2 = 12
 text_deg_turn_2 = 30
 text_weight_2 = 'bold'
-fill_color_21 = 'grey'  # Заливка, цвет над графиком
-# fill_color_22='red'#Заливка под графиком(опционально)
-background_color_2 = 'yellow'  # Фон диаграммы Цвет любой;задание цвета -любое
+fill_color_2 = 'grey'  # Заливка, цвет над графиком #808080-HEX код
+background_color_2 = 'yellow'  # Фон диаграммы Цвет любой;задание цвета -любое #FFFF00 - HEX код
 
 # Обработка данных
-for line in file2:  # Извлечение данных
-    i += 1
-    if (i == 1):
-        abc_2 = re.findall(r'\d+', line)
-
-    if (i == var + 1):
-        val_ar_2 = re.findall(r"[-+]?\d+\.\d+", line)
+# for line in file2:  # Извлечение данных
+#     i += 1
+#     if (i == 1):
+#         abc_2 = re.findall(r'\d+', line)
+#
+#     if (i == var + 1):
+#         val_ar_2 = re.findall(r"[-+]?\d+\.\d+", line)
 
 # Но это ещё не всё, все значения хранятся в виде строк, их НЕОБХОДИМО преобра-
 # вать в численные
-abc_2 = np.array(abc_2, int)
-val_ar_2 = np.array(val_ar_2, float)
+# x_2 = np.array(x_2, int)
+# y_2 = np.array(y_2, float)
 # Опциональная часть для тех, у кого есть значения ниже нуля(Может вылезти
 # за границы если будут подряд два значения >0 и <0
 # bz_val_ar=[]#Массив для заливания под Ох
@@ -75,13 +78,15 @@ val_ar_2 = np.array(val_ar_2, float)
 ################Задание 3 - столбчатая диаграмма с аннотацией##############
 import re
 
-pathtotask3 = "/home/pavel/Загрузки/fig8.txt"  # Переменная, содержащая путь к файлу
-var = 13  # Номер выполняемого варианта
-file3 = open(pathtotask3, 'r')
+# pathtotask3 = "/home/pavel/Загрузки/fig8.txt"  # Переменная, содержащая путь к файлу
+var = 7  # Номер выполняемого варианта
+# file3 = open(pathtotask3, 'r')
 i = 0
-abc_30 = 0  # Нулевая точка абсцисс 3 задания
-abc_31 = 0  # Конечная точка абсцисс 3 задания
-val_ar_3 = []  # Значения графика 3 задания
+x_3 = np.arange(616, 667, 1)  # Нулевая точка абсцисс 3 задания
+# abc_31 = 0  # Конечная точка абсцисс 3 задания
+y_3 = [2, 4, 5, 16, 0, 0, 17, 3, 0, 0, 4, 6, 2, 0, 8, 0, 0, 6, 2,
+       4, 5, 11, 0, 0, 12, 2, 4, 0, 0, 0, 0, 0, 0, 4, 6, 2, 0, 0,
+       1, 1, 11, 0, 0, 0, 2, 0, 3, 13, 0, 0, 2, 6]  # Значения графика 3 задания
 
 fill_color_3 = 'black'  # Заливка любая, цвет любой
 arrow_color = '#AAAAAA'  # Стрелка Цвет любой;способ задания –HEX
@@ -101,16 +106,16 @@ text_x_3 = arrow_end_x - len(text_3)  # Координата х
 text_y_3 = arrow_end_y - 2  # Координата y(можно поменять на просто число)
 
 background_color_3 = 'brown'  # Фон диаграммы Цвет любой;задание цвета -любое
-for line in file3:
-    i += 1
-    if (i == 2 * var - 1):
-        values = re.findall(r'\d+', line)
-        abc_30 = values[0]
-        abc_31 = values[1]
-    if (i == 2 * var):
-        val_ar_3 = re.findall(r'\d+', line)
-abc_3 = np.arange(int(abc_30), int(abc_31) + 1, 1)
-val_ar_3 = np.array(val_ar_3, int)
+# for line in file3:
+#     i += 1
+#     if (i == 2 * var - 1):
+#         values = re.findall(r'\d+', line)
+#         x_3 = values[0]
+#         abc_31 = values[1]
+#     if (i == 2 * var):
+#         y_3 = re.findall(r'\d+', line)
+# abc_3 = np.arange(int(x_3), int(abc_31) + 1, 1)
+# y_3 = np.array(y_3, int)
 ######################Задание 4 - график функций с легендой####################
 import math
 
@@ -229,7 +234,7 @@ ax1.axis('off')  # Вырубаем оси
 # Конец выполнения задания 1
 
 # Начало выполнения задания 2
-ax2.plot(abc_2, val_ar_2)  # Ставим точки графика по знач. двух массивов
+ax2.plot(x_2, y_2)  # Ставим точки графика по знач. двух массивов
 plt.sca(ax2)  # Переключаемся на оси 2 графика
 ax2.grid(True)  # Включаем решетку графика
 ax2.set_xlabel('Время', fontsize=text_size_2, fontname=text_font_2)  # Подпись оси х
@@ -240,12 +245,12 @@ ax2.set_facecolor(background_color_2)
 plt.xticks(rotation=text_deg_turn_2)  # Поворачиваем значения оси х
 plt.yticks(rotation=text_deg_turn_2)  # Поворачиваем значения оси y
 
-ax2.fill_between(abc_2, 0, val_ar_2, color=fill_color_21)  # Заливка над Ох
+ax2.fill_between(x_2, 0, y_2, color=fill_color_21)  # Заливка над Ох
 ax2.set_title("Стандартный график с заливкой")
 # Конец задания 2
 
 # Начало задания 3
-ax3.bar(abc_3, val_ar_3, color=fill_color_3)  # Создание столбцов диаграммы
+ax3.bar(abc_3, y_3, color=fill_color_3)  # Создание столбцов диаграммы
 ax3.grid(which='major', axis='both')  # Создание сетки на диаграмме
 ax3.arrow(arrow_end_x, arrow_end_y, arrow_head_x - arrow_end_x,
           arrow_head_y - arrow_end_y, color=arrow_color, width=arrow_width,
