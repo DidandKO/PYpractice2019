@@ -117,44 +117,46 @@ background_color_3 = 'brown'  # Фон диаграммы Цвет любой;з
 # abc_3 = np.arange(int(x_3), int(abc_31) + 1, 1)
 # y_3 = np.array(y_3, int)
 ######################Задание 4 - график функций с легендой####################
+
 import math
 
-abc_4 = np.arange(-1.0 * math.pi, math.pi / 2, math.pi / 120)  # Создание массива координат х
-val_ar_4_1 = []  # Массив значений y1
-y2_k = -0.12  # Коэффициент функции y2
-polynom_sq = [-1.8, -1, -0.13, -0.5, 1.9]  # Корни полинома
-val_ar_4_2 = []  # Массив значений y2
+x_4 = np.arange(-1.0 * math.pi, math.pi / 2, math.pi / 120)  # Создание массива координат х
+y4_1 = []  # Массив значений y1
+ky4 = 0.3  # Коэффициент функции y2
+polynom_sq = [-1.8, -0.3, 0, 35, 1.9]  # Корни полинома
+y4_2 = []  # Массив значений y2
 y1_color = 'cyan'  # Цвет первого графика
 y2_color = 'magenta'  # Цвет второго графика
 legend_font = "Times New Roman"  # Данные легенды:шрифт, цвет, размер, жирность, стиль и цвет
-legend_size = 16
+legend_size = 15
 legend_weight = 'light'
-legend_style = 'normal'
+legend_style = 'oblique'
 legend_color = 'green'
-legend_turn_ox = 15  # Угол поворота значений Ох
-legend_text_1 = "sin(4x)-cos(6x)^2"  # Текст легенды 1 и 2 графика
-legend_text_2 = "Полином с k = 0.12"
+legend_turn_ox = 45  # Угол поворота значений Ох
+legend_text_1 = "sin(x)+sin(4x)"  # Текст легенды 1 и 2 графика
+legend_text_2 = "Полином с k = 0.3"
 # Обработка
-legend_props = {  # Без него не передать инфу о шрифте в легенду
+legend_props = {
+    # Без него не передать инфу о шрифте в легенду
     'family': legend_font,
     'size': legend_size,
     'weight': legend_weight,
     'style': legend_style,
 }
-for x in abc_4:
-    val_ar_4_1.append(math.sin(x * 4.0) - math.cos(x * 6.0) ** 2)  # Задание массива значений 1 функции
-val_ar_4_1 = np.array(val_ar_4_1, float)
+for x in x_4:
+    y4_1.append(math.sin(x) - math.cos(x * 4.0))  # Задание массива значений 1 функции
+y4_1 = np.array(y4_1, float)
 
 k_array = np.poly(polynom_sq)  # Массив коэфициентов уравнения y2
 for i in range(0, len(k_array)):  # преобразуем на общий коэфициент
-    k_array[i] = k_array[i] * y2_k
-for x in abc_4:
+    k_array[i] = k_array[i] * ky4
+for x in x_4:
     sum = 0
     for k in range(0, len(k_array)):
         sum += k_array[k] * (x ** (len(k_array) - k - 1))
 
-    val_ar_4_2.append(sum)
-val_ar_4_2 = np.array(val_ar_4_2, float)
+    y4_2.append(sum)
+y4_2 = np.array(y4_2, float)
 
 ####################Задание 5 -Диаграммы рассеяния#############################
 import scipy as sc
@@ -263,8 +265,8 @@ ax3.set_title("Диаграмма с аннотацией")
 # Конец задания 3
 
 # Начало задания 4
-p1, = ax4.plot(abc_4, val_ar_4_1, color=y1_color)  # Рисуем графики по массивам
-p2, = ax4.plot(abc_4, val_ar_4_2, color=y2_color)
+p1, = ax4.plot(x_4, y4_1, color=y1_color)  # Рисуем графики по массивам
+p2, = ax4.plot(x_4, y4_2, color=y2_color)
 
 l = ax4.legend([p1, p2], [legend_text_1, legend_text_2], prop=legend_props, loc=0)  # Создаём легенду
 for text in l.get_texts():  # ЗАДАЁМ ЦВЕТ ТАК ПОТОМУ ЧТО ПО НОРМАЛЬНОМУ НЕЛЬЗЯ
