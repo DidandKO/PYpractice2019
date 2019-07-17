@@ -161,55 +161,56 @@ y4_2 = np.array(y4_2, float)
 ####################Задание 5 -Диаграммы рассеяния#############################
 import scipy as sc
 
-pareto_alpha = 1  # Коэффициент для распр. Парето
-norm_myu = 3.0  # Коэффициенты для нормального расп.
+pareto_alpha = 2.2  # Коэффициент для распр. Парето
+norm_myu = 4.0  # Коэффициенты для нормального расп.
 norm_sigma = 2.0
-gamma_shape = 1.0  # Коэффициенты для гамма расп.
-gamma_scale = 1.7
+gamma_shape = 2.8  # Коэффициенты для гамма расп.
+gamma_scale = 2.0
 ravn_min = 0  # Коэффициенты для равномерного расп.
 ravn_max = 3
-pareto_color = 'red'  # Цвета графиков распределений
-norm_color = [0, 1, 0]
-gamma_color = 'orange'
-ravn_color = '#0080FF'
+pareto_color = [255, 255, 0]  # Цвета графиков распределений
+norm_color = 'white'
+gamma_color = '#00FF00'
+ravn_color = '#FFFFFF'
 pareto_dotsize = 10;  # размер точек распределений
-norm_dotsize = 3;
-gamma_dotsize = 2;
-ravn_dotsize = 1;
-abc_5_1 = np.arange(0.001, 1, 1 / 300)  # Задаём абсциссу для 1 функции
-abc_5_2 = np.arange(1.001, 2, 1 / 300)
-abc_5_3 = np.arange(2.001, 3, 1 / 300)
+norm_dotsize = 2;
+gamma_dotsize = 1;
+ravn_dotsize = 2;
+x_5_1 = np.arange(0.001, 1, 1 / 300)  # Задаём абсциссу для 1 функции
+x_5_2 = np.arange(1.001, 2, 1 / 300)
+x_5_3 = np.arange(2.001, 3, 1 / 300)
 # Поиск значений
 # Распределение Парето
 # val_ar_5_pareto = np.random.pareto(abc_5)
 # for i in range(0,len(val_ar_5_pareto)):
 #   val_ar_5_pareto[i]*=pareto_alpha
 # Задаём нормальное распределение
-val_ar_5_normal = np.random.normal(norm_myu, norm_sigma, 300)
+res_normal = np.random.normal(norm_myu, norm_sigma, 300)
 # Задаём гамма распределение
-val_ar_5_gamma = np.random.gamma(gamma_shape, gamma_scale, 300)
+res_gamma = np.random.gamma(gamma_shape, gamma_scale, 300)
 # Задаём равномерное распределение
-val_ar_5_ravn = np.random.uniform(ravn_min, ravn_max, 300)
+res_ravn = np.random.uniform(ravn_min, ravn_max, 300)
+
 # Задание 6 - График фигур Лиссажу с заливкой
 import math
 
-ampl_a = 6  # Амплитуды А и В
+ampl_a = 12  # Амплитуды А и В
 ampl_b = 15
-freq_a = 7.2  # Частоты a и b
-freq_b = 6
-lis_sigma = math.pi / 4  # Cдвиг фаз
-lis_color = "#0000FF"  # Цвет заливки
-lis_transparency = 0.2  # Прозрачность(от 0 до 1
-lis_netline_color = '#FF0000'  # Цвет линий сетки
+freq_a = 4  # Частоты a и b
+freq_b = 8.4
+lis_sigma = math.pi / 2  # Cдвиг фаз
+lis_color = "#00FFFF"  # Цвет заливки
+lis_transparency = 0.2  # Прозрачность(от 0 до 1)
+lis_netline_color = '#0000FF'  # Цвет линий сетки
 
 # Обработка
-abc_6 = []
-val_ar_6 = []
+x_6 = []
+y_6 = []
 for i in range(0, 1001):
-    abc_6.append(ampl_a * math.sin(math.pi * i / 500 * freq_a + lis_sigma))
-    val_ar_6.append(ampl_b * math.sin(math.pi * i / 500 * freq_b))
-abc_6 = np.array(abc_6, float)
-val_ar_6 = np.array(val_ar_6, float)
+    x_6.append(ampl_a * math.sin(math.pi * i / 500 * freq_a + lis_sigma))
+    y_6.append(ampl_b * math.sin(math.pi * i / 500 * freq_b))
+x_6 = np.array(x_6, float)
+y_6 = np.array(y_6, float)
 #############################################################################
 #####################Конец объявления переменных#############################
 #############################################################################
@@ -247,12 +248,12 @@ ax2.set_facecolor(background_color_2)
 plt.xticks(rotation=text_deg_turn_2)  # Поворачиваем значения оси х
 plt.yticks(rotation=text_deg_turn_2)  # Поворачиваем значения оси y
 
-ax2.fill_between(x_2, 0, y_2, color=fill_color_21)  # Заливка над Ох
+ax2.fill_between(x_2, 0, y_2, color=fill_color_2)  # Заливка над Ох
 ax2.set_title("Стандартный график с заливкой")
 # Конец задания 2
 
 # Начало задания 3
-ax3.bar(abc_3, y_3, color=fill_color_3)  # Создание столбцов диаграммы
+ax3.bar(x_3, y_3, color=fill_color_3)  # Создание столбцов диаграммы
 ax3.grid(which='major', axis='both')  # Создание сетки на диаграмме
 ax3.arrow(arrow_end_x, arrow_end_y, arrow_head_x - arrow_end_x,
           arrow_head_y - arrow_end_y, color=arrow_color, width=arrow_width,
@@ -280,18 +281,18 @@ ax4.set_title("График с легендой")
 
 # Начало задания 5
 # ax5.plot(abc_5(Заменить на нужное),val_ar_5_pareto, '.',linewidth = pareto_dotsize, color = pareto_color)#Рисуем распределение Парето
-ax5.scatter(abc_5_1, val_ar_5_normal, norm_dotsize, norm_color)  # Рисуем нормальное распределение
-ax5.scatter(abc_5_2, val_ar_5_gamma, gamma_dotsize,  # Рисуем гамма распределение
+ax5.scatter(x_5_1, res_normal, norm_dotsize, norm_color)  # Рисуем нормальное распределение
+ax5.scatter(x_5_2, res_gamma, gamma_dotsize,  # Рисуем гамма распределение
             color=gamma_color)
-ax5.scatter(abc_5_3, val_ar_5_ravn, ravn_dotsize, ravn_color)  # Рисуем равномерное распределение
+ax5.scatter(x_5_3, res_ravn, ravn_dotsize, ravn_color)  # Рисуем равномерное распределение
 ax5.grid(True)
 ax5.set_facecolor("#000000")  # Задаём цвет фона
 ax5.set_title("Диаграмма рассеяния")
 # Конец задания 5
 
 # Начало задания 6
-ax6.plot(abc_6, val_ar_6)  # Построение графика
-ax6.fill_between(abc_6, val_ar_6, color=lis_color, alpha=lis_transparency)  # Заливка фигуры
+ax6.plot(x_6, y_6)  # Построение графика
+ax6.fill_between(x_6, y_6, color=lis_color, alpha=lis_transparency)  # Заливка фигуры
 ax6.grid(color=lis_netline_color)
 ax6.set_title("Фигуры Лиссажу")
 # Конец задания 6
