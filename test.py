@@ -1,15 +1,18 @@
+import numpy as np
 import matplotlib.pyplot as plt
 
-fig = plt.figure()
-ax = fig.add_subplot(111) # We'll explain the "111" later. Basically, 1 row and 1 column.
+x = np.arange(1, 8)
+y = np.random.randint(1, 10, size = 7)
 
-fig.set_facecolor('green')
 
-ax.set_facecolor('red')
-ax.set_xlim([-10, 10])
-ax.set_ylim([-2, 2])
-ax.set_title('Основы анатомии matplotlib')
-ax.set_xlabel('ось абцис (XAxis)')
-ax.set_ylabel('ось ординат (YAxis)')
+fig, ax = plt.subplots()
+
+ax.bar(x, y, color = 'red')
+
+
+fig.set_figwidth(12)    #  ширина и
+fig.set_figheight(6)    #  высота "Figure"
+fig.set_facecolor('floralwhite')
+ax.set_facecolor('seashell')
 
 plt.show()
